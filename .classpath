@@ -15,5 +15,6 @@
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="/home/marianpantila/Programs/apache-tomcat-8.0.26/bin/bootstrap.jar"/>
 	<classpathentry kind="lib" path="/home/marianpantila/Programs/apache-tomcat-8.0.26/bin/tomcat-juli.jar"/>
+	<classpathentry kind="lib" path="/home/marianpantila/JAVA/External Jars/mysql-connector-java-5.1.35.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
