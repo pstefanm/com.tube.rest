@@ -12,14 +12,14 @@ public class V1_status {
 	@GET
 	@Produces(MediaType.TEXT_HTML)
 	public String returnTitle() {
-		return "<p>Java Web Service Status</p>";
+		return "<h3>Java Web Service Status</h3>" + "\n<p>Service up and running</>";
 	}
 	
 	@Path("/version")
 	@GET
 	@Produces(MediaType.TEXT_HTML)
 	public String returnVersion() {
-		return "<p>Java Web Service Version: </p>" + api_version;
+		return "<h3>Java Web Service Version: </h3>" + "<p>" + api_version + "</p>";
 	}
 
 }
