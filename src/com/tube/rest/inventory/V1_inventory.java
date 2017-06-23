@@ -26,7 +26,7 @@ public class V1_inventory {
 		Response response = null;
 
 		try {
-			
+
 			connection = SQLdbtube.initDBConnection();
 			query = connection.prepareStatement("select * from PC_PARTS;");
 
