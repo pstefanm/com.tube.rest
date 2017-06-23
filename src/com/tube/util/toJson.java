@@ -3,6 +3,7 @@ package com.tube.util;
 import java.sql.ResultSet;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
+import org.owasp.esapi.ESAPI;
 
 public class toJson {
 
@@ -58,16 +59,10 @@ public class toJson {
 						/* Debug */ System.out.println("ToJson: NVARCHAR");
 					} else if (rsmd.getColumnType(i) == java.sql.Types.VARCHAR) {
 
-						temp = rs.getString(columnName);
-						// saving column data
-						/*
-						 * // to temp variable temp =
-						 * ESAPI.encoder().canonicalize(temp); // decoding //
-						 * data to // base // state temp =
-						 * ESAPI.encoder().encodeForHTML(temp); // encoding //
-						 * to be // browser // safe
-						 */ jObj.put(columnName, temp); // putting data into JSON
-														// object
+						temp = rs.getString(columnName); // saving column data to temp variable 
+						temp = ESAPI.encoder().canonicalize(temp); // decoding  data to base  state 
+						temp = ESAPI.encoder().encodeForHTML(temp); // encoding to be  browser safe
+						jObj.put(columnName, temp); // putting data into JSON object
 
 						// obj.put(column_name, rs.getString(column_name));
 						// /*Debug*/ System.out.println("ToJson: VARCHAR");
