@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import org.codehaus.jettison.json.JSONArray;
 
@@ -17,13 +18,15 @@ public class V1_inventory {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public String returnAllPcParts() throws Exception {
+	public Response returnAllPcParts() throws Exception {
 
 		PreparedStatement query = null;
 		Connection connection = null;
 		String returnString = null;
+		Response response = null;
 
 		try {
+			
 			connection = SQLdbtube.initDBConnection();
 			query = connection.prepareStatement("select * from PC_PARTS;");
 
@@ -42,14 +45,16 @@ public class V1_inventory {
 
 			returnString = json.toString();
 
+			response = Response.ok(returnString).build();
+
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		} finally {
-			//if (connection != null)
-				//connection.close();
+			if (connection != null)
+				connection.close();
 		}
 
-		return returnString;
+		return response;
 	}
 
 }

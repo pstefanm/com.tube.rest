@@ -96,7 +96,7 @@ public class toJson {
 
 			} // end while
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 
 		return jArr;

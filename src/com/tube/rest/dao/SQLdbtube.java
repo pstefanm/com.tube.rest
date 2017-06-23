@@ -13,13 +13,15 @@ public class SQLdbtube {
 
 	public static Connection initDBConnection() throws Exception {
 
-		if (connection != null) {
-			return connection;
-		}
-
+		if (connection != null) return connection;
+		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/training?user=root&password=root");
+			if (connection == null) {
+				Class.forName("com.mysql.jdbc.Driver");
+				connection = DriverManager
+						.getConnection("jdbc:mysql://localhost:3306/training?user=root&password=root");
+			}
+
 		} catch (ClassNotFoundException cnfe) {
 			cnfe.printStackTrace();
 		} catch (SQLException sqle) {
@@ -30,17 +32,5 @@ public class SQLdbtube {
 
 		return connection;
 
-	}
-
-	public void closeDBConnection() {
-
-		try {
-			if (!this.connection.isClosed()) {
-				connection.close();
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 }
