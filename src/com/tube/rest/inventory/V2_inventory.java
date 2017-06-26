@@ -74,5 +74,32 @@ public class V2_inventory {
 		return Response.ok(returnString).build();
 
 	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/{brand}/{item_code}")
+	public Response returnBrandItemCode(@PathParam("brand") String brand, @PathParam("item_code") String item_code) throws Exception {
+
+		JSONArray jArray = new JSONArray();
+		String returnString = null;
+
+		try {
+
+			if (brand == null) {
+				return Response.status(400).entity("ERROR: Server was not able to process your request").build();
+			}
+			SchemaSql sql = new SchemaSql();
+			jArray = sql.returnPartBrandsItem(brand, item_code);
+
+			returnString = jArray.toString();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(500).entity("Server was not able to process your request").build();
+		}
+
+		return Response.ok(returnString).build();
+
+	}
 
 }

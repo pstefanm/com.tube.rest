@@ -50,4 +50,43 @@ public class SchemaSql extends SQLdbtube {
 		return jArray;
 	}
 
+	public JSONArray returnPartBrandsItem(String brand, String item_code) throws Exception {
+
+		PreparedStatement query = null;
+		Connection connection = null;
+
+		toJson convertor = new toJson();
+		JSONArray jArray = new JSONArray();
+
+		try {
+
+			connection = initDBConnection();
+			query = connection.prepareStatement(
+					"select PC_PARTS_PK, PC_PARTS_TITLE, PC_PARTS_CODE, PC_PARTS_MAKER, PC_PARTS_AVAIL, PC_PARTS_DESC "
+							+ "from PC_PARTS " + "where UPPER(PC_PARTS_MAKER) = ? " + "AND PC_PARTS_CODE = ?");
+			
+			// protect against sql injection
+			query.setString(1, brand.toUpperCase()); 
+			query.setString(2, item_code);
+			ResultSet rs = query.executeQuery();
+
+			jArray = convertor.toJSON(rs);
+			query.close(); // close connection
+
+		} catch (SQLException SQLe) {
+			SQLe.printStackTrace();
+			return jArray;
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+			return jArray;
+		} finally {
+			if (connection != null)
+				connection.close();
+		}
+
+		return jArray;
+	}
+
 }
