@@ -1,8 +1,6 @@
 package com.tube.rest.dao;
 
 import java.sql.Connection;
-import java.sql.SQLType;
-
 import org.codehaus.jettison.json.JSONArray;
 
 import java.sql.PreparedStatement;

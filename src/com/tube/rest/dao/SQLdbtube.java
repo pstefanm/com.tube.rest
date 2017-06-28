@@ -4,9 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import javax.naming.*;
-import javax.sql.*;
-
 public class SQLdbtube {
 
 	private static Connection connection;
