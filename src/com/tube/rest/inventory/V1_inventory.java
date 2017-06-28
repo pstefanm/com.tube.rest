@@ -50,8 +50,7 @@ public class V1_inventory {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (connection != null)
-				connection.close();
+			if (connection != null)	connection.close();
 		}
 
 		return response;

@@ -10,10 +10,10 @@ public class SQLdbtube {
 
 	public static Connection initDBConnection() throws Exception {
 
-		if (connection != null)
-			return connection;
-
 		try {
+			if (connection != null)
+				return connection;
+
 			if (connection == null) {
 				Class.forName("com.mysql.jdbc.Driver");
 				connection = DriverManager
